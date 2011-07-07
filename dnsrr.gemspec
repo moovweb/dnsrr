@@ -12,4 +12,5 @@ Gem::Specification.new do |s|
   s.executables = ['dnsrr_control.rb']
   s.require_path = 'lib'
   s.add_dependency('rubydns')
+  s.add_dependency('daemons')
 end
