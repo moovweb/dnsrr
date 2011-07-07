@@ -1,0 +1,9 @@
+--- 
+- :ip: 127.0.0.1
+  :name: mlocal
+  :expression: !ruby/regexp /^mlocal\./
+  :description: rewrite anything hostname starting with mlocal to redirect to local machine
+- :ip: 127.0.0.1
+  :name: exotic test
+  :expression: !ruby/regexp /^(?!mail)\S+\.yahoo\.com/
+  :description: rewrite everything by www to localhost
