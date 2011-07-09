@@ -5,12 +5,14 @@ require "rubydns"
 require "yaml"
 require 'getoptlong'
 require 'pathname'
+#require_relative 'mresolv'
 
 args = {  :pidfile => "/tmp/dnsrr.pid",
 	  :port => 53,
 	  :listen_ip => "0.0.0.0",
 	  :proto => :udp,
 	  :config => '/etc/dnsrr_config.yaml',
+	  :resolv => '/etc/resolv.conf',
       }
 
 opts = GetoptLong.new(
@@ -18,6 +20,7 @@ opts = GetoptLong.new(
   [ '--port', '-p', GetoptLong::OPTIONAL_ARGUMENT ],
   [ '--protocol', '-P', GetoptLong::OPTIONAL_ARGUMENT ],
   [ '--listen-ip', '-i', GetoptLong::OPTIONAL_ARGUMENT ],
+  [ '--resolv-conf', '-r', GetoptLong::OPTIONAL_ARGUMENT ],
   [ '--pid-file', '-f', GetoptLong::NO_ARGUMENT ]
 )
 
@@ -38,6 +41,8 @@ opts.each do |opt,arg|
       args[:listen_ip] = arg
     when '--pid-file'
       args[:pidfile] = arg
+    when '--resolv-conf'
+      args[:resolv] = arg
   end
 end
 
@@ -57,7 +62,10 @@ rescue Exception => e
   exit(2)
 end
 
-$R = Resolv::DNS.new
+rconf = Mresolv::Parser.new(args[:resolv])
+
+$R = Resolv::DNS.new(:nameserver => rconf.nameservers)
+
 Name = Resolv::DNS::Name
 RubyDNS::run_server(:listen => [[args[:proto], args[:listen_ip], args[:port]]]) do
   exps.each do |expression|
