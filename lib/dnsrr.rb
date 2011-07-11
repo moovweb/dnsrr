@@ -5,7 +5,7 @@ require "rubydns"
 require "yaml"
 require 'getoptlong'
 require 'pathname'
-#require_relative 'mresolv'
+require File.join(File.dirname(__FILE__), 'mresolv')
 
 args = {  :pidfile => "/tmp/dnsrr.pid",
 	  :port => 53,
