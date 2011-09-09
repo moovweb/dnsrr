@@ -5,6 +5,11 @@ Run:
 
     bundle install
 
+Prerequisites
+==========
+
+Ruby 1.8.7 (currently presumed unsupported/broken under Ruby 1.9.x)
+
 
 Setting up
 ==========
