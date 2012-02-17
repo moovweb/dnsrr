@@ -69,8 +69,8 @@ $R = Resolv::DNS.new(:nameserver => rconf.nameservers)
 Name = Resolv::DNS::Name
 RubyDNS::run_server(:listen => [[args[:proto], args[:listen_ip], args[:port]]]) do
   exps.each do |expression|
-    match(expression[:expression], :A) do |dnsmatch|
-      dnsmatch[1].respond!("#{expression[:ip]}")
+    match(expression[:expression], :A) do |match_data, transaction|
+      transaction.respond!("#{expression[:ip]}")
     end
   end
   otherwise do |transaction|
