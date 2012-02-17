@@ -1,3 +1,3 @@
-source "http://rubygems.org"
-gem 'rubydns'
-gem 'daemons'
+source :gemcutter
+
+gemspec
