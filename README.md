@@ -17,15 +17,15 @@ edit it to meet your needs
 
 2) run with default configs
 
-    rvmsudo bin/dnsrr_control.rb  start
+    rvmsudo bin/dnsrr_control  start
 
 3) pass arguments
 
-    rvmsudo bin/dnsrr_control.rb start -- --config /home/user/test/config.yaml
+    rvmsudo bin/dnsrr_control start -- --config /home/user/test/config.yaml
 
 4) run in the foreground - gets errors
 
-    rvmsudo bin/dnsrr_control.rb  run
+    rvmsudo bin/dnsrr_control  run
 
 5) Available arguments
 
